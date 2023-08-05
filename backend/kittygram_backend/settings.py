@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('TOKEN', '')
 
 DEBUG = eval(os.getenv('DEBUG', 'False'))
 
-HOSTS_FROM_ENV = os.getenv('ALLOWED_HOSTS')
+HOSTS_FROM_ENV = os.getenv('ALLOWED_HOSTS', 'localhost')
 ALLOWED_HOSTS = HOSTS_FROM_ENV[2:(len(HOSTS_FROM_ENV) - 2)].split("', '")
 
 INSTALLED_APPS = [
