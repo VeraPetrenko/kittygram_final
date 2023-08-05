@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,7 +11,7 @@ SECRET_KEY = os.getenv('TOKEN', '')
 DEBUG = eval(os.getenv('DEBUG', 'False'))
 
 HOSTS_FROM_ENV = os.getenv('ALLOWED_HOSTS')
-ALLOWED_HOSTS = HOSTS_FROM_ENV[2:(len(HOSTS_FROM_ENV)-2)].split("', '")
+ALLOWED_HOSTS = HOSTS_FROM_ENV[2:(len(HOSTS_FROM_ENV) - 2)].split("', '")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -107,7 +108,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', 
+        'rest_framework.permissions.IsAuthenticated',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
