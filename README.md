@@ -1,26 +1,42 @@
-#  Как работать с репозиторием финального задания
+# Kittygram
+Проект Kittygram предназначен для публикации и чтения информации о котиках.
 
-## Что нужно сделать
+### Установка:
+Клонировать репозиторий и перейти в него в командной строке:
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
-
-## Как проверить работу с помощью автотестов
-
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+```
+git@github.com:VeraPetrenko/kittygram_final.git
+cd kittygram_final
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+```
+Запустить проект локально:
+```
+docker compose -f docker-compose.production.yml
+```
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+Запустить проект на удаленном сервере:
+- Перейти в директорию kittygram, выполнить команды по запуску контейнеров, применить миграции и собрать статику:
+```
+cd kittygram
+sudo docker compose -f docker-compose.production.yml pull
+sudo docker compose -f docker-compose.production.yml down
+sudo docker compose -f docker-compose.production.yml up -d
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
+sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/static/. /backend_static/static/
 
-## Чек-лист для проверки перед отправкой задания
+```
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+Сайт будет доступен по домену:
+<https://ktgrm.serveftp.com/>
+
+### Основные технологии
+- django3.2.3
+- djangorestframework 3.12.4
+- noip.com
+- gunicorn
+- nginx
+
+### Авторы
+Vera Petrenko & Yandex Practicum
