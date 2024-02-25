@@ -9,7 +9,7 @@ git@github.com:VeraPetrenko/kittygram_final.git
 cd kittygram_final
 ```
 
-```
+
 Запустить проект локально:
 ```
 docker compose -f docker-compose.production.yml
